@@ -33,11 +33,11 @@ LOADABLES = (
 )
 
 
-async def async_entrypoint(token: str):
+async def async_entrypoint(token):
     bots: typing.List[commands.Bot] = []
 
     for prefix, extension in LOADABLES:
-        bot = commands.Bot(prefix, intents=discord.Intents.all())
+        bot = commands.Bot(prefix)
         await discord.utils.maybe_coroutine(bot.load_extension, extension)
 
         bots.append(bot)
@@ -56,7 +56,7 @@ async def async_entrypoint(token: str):
 
 @click.command()
 @click.argument('token')
-def entrypoint(token: str):
+def entrypoint(token):
     logger = logging.getLogger()
     logger.setLevel(logging.INFO)
 
@@ -70,4 +70,4 @@ def entrypoint(token: str):
 
 
 if __name__ == "__main__":
-    entrypoint()  # pylint: disable=no-value-for-parameter
+    entrypoint()

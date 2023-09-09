@@ -10,13 +10,12 @@ jishaku.inspections test
 """
 
 import collections  # for __iadd__ test
-import typing
 
 import discord
 import pytest
+from utils import sentinel
 
 from jishaku.repl.inspections import all_inspections
-from tests.utils import sentinel
 
 
 @pytest.mark.parametrize(
@@ -30,6 +29,6 @@ from tests.utils import sentinel
         sentinel  # cover current-working-directory inspections
     ]
 )
-def test_object_inspection(target: typing.Any):
+def test_object_inspection(target):
     for _, _ in all_inspections(target):
         pass

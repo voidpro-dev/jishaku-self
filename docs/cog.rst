@@ -13,8 +13,6 @@ The conventional way to add the cog is by using the module as an extension:
 .. code:: python3
 
     bot.load_extension('jishaku')
-    # or
-    await bot.load_extension("jishaku")
 
 You could also create your own extension to load the ``Jishaku`` cog, but this is not recommended:
 

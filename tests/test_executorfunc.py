@@ -10,7 +10,6 @@ jishaku.hljs test
 """
 
 import inspect
-import typing
 
 import pytest
 
@@ -33,14 +32,14 @@ def sig(*args, **kwargs):
     ]
 )
 @pytest.mark.asyncio
-async def test_magic_executor(args: tuple[typing.Any, ...], kwargs: dict[str, typing.Any], expected_return: tuple[int, int | None, int]):
-    def non_executor(a: int, b: int | None = None, *, c: int) -> tuple[int, int | None, int]:
+async def test_magic_executor(args, kwargs, expected_return):
+    def non_executor(a, b=None, *, c) -> tuple:
         return a, b, c
 
     exact_executor = executor_function(non_executor)
 
     @executor_function
-    def redefined_executor(a: int, b: int | None = None, *, c: int) -> tuple[int, int | None, int]:
+    def redefined_executor(a, b=None, *, c) -> tuple:
         return a, b, c
 
     assert inspect.signature(non_executor) == inspect.signature(exact_executor)

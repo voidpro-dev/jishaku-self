@@ -14,10 +14,11 @@ This variant overrides behavior using a Feature.
 
 """
 
+import inspect
+
 from discord.ext import commands
 
 import jishaku
-from jishaku.types import ContextT
 
 
 class ThirdPartyFeature(jishaku.Feature):
@@ -26,7 +27,7 @@ class ThirdPartyFeature(jishaku.Feature):
     """
 
     @jishaku.Feature.Command(name="jishaku", aliases=["jsk"], invoke_without_command=True, ignore_extra=False)
-    async def jsk(self, ctx: ContextT):
+    async def jsk(self, ctx: commands.Context):
         """
         override test
         """
@@ -39,9 +40,20 @@ class Magnet1(ThirdPartyFeature, *jishaku.OPTIONAL_FEATURES, *jishaku.STANDARD_F
     """
 
 
-async def setup(bot: commands.Bot):
+async def async_setup(bot: commands.Bot):
+    """
+    The async setup function for the extended cog
+    """
+
+    await bot.add_cog(Magnet1(bot=bot))
+
+
+def setup(bot: commands.Bot):
     """
     The setup function for the extended cog
     """
 
-    await bot.add_cog(Magnet1(bot=bot))
+    if inspect.iscoroutinefunction(bot.add_cog):
+        return async_setup(bot)
+    else:
+        bot.add_cog(Magnet1(bot=bot))

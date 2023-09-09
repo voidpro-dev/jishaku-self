@@ -21,7 +21,12 @@ import time
 import typing
 
 T = typing.TypeVar('T')
-P = typing.ParamSpec('P')
+
+if sys.version_info < (3, 10):
+    from typing_extensions import ParamSpec
+    P = ParamSpec('P')
+else:
+    P = typing.ParamSpec('P')  # pylint: disable=no-member
 
 
 SHELL = os.getenv("SHELL") or "/bin/bash"
@@ -78,7 +83,7 @@ class ShellReader:
             self.highlight = "ansi"
             self.escape_ansi = escape_ansi
 
-        self.process = subprocess.Popen(sequence, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)  # pylint: disable=consider-using-with
+        self.process = subprocess.Popen(sequence, stdout=subprocess.PIPE, stderr=subprocess.PIPE)  # pylint: disable=consider-using-with
         self.close_code = None
 
         self.loop = loop or asyncio.get_event_loop()
@@ -164,14 +169,3 @@ class ShellReader:
                 return item
 
         raise StopAsyncIteration()
-
-    def __iter__(self):
-        return self
-
-    def __next__(self):
-        try:
-            item = self.queue.get_nowait()
-        except asyncio.QueueEmpty as exception:
-            raise StopIteration() from exception
-
-        return item

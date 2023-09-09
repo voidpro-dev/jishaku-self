@@ -13,7 +13,6 @@ The jishaku root command.
 
 import sys
 import typing
-from importlib.metadata import distribution, packages_distributions
 
 import discord
 from discord.ext import commands
@@ -29,6 +28,11 @@ try:
     import psutil
 except ImportError:
     psutil = None
+
+try:
+    from importlib.metadata import distribution, packages_distributions
+except ImportError:
+    from importlib_metadata import distribution, packages_distributions  # type: ignore
 
 
 class RootCommand(Feature):
@@ -102,12 +106,11 @@ class RootCommand(Feature):
                     "to query process information."
                 )
                 summary.append("")  # blank line
-        s_for_guilds = "" if len(self.bot.guilds) == 1 else "s"
-        s_for_users = "" if len(self.bot.users) == 1 else "s"
-        cache_summary = f"{len(self.bot.guilds)} guild{s_for_guilds} and {len(self.bot.users)} user{s_for_users}"
+
+        cache_summary = f"{len(self.bot.guilds)} guild(s) and {len(self.bot.users)} user(s)"
 
         # Show shard settings to summary
-        if isinstance(self.bot, discord.AutoShardedClient):
+        if False:
             if len(self.bot.shards) > 20:
                 summary.append(
                     f"This bot is automatically sharded ({len(self.bot.shards)} shards of {self.bot.shard_count})"
@@ -119,7 +122,7 @@ class RootCommand(Feature):
                     f"This bot is automatically sharded (Shards {shard_ids} of {self.bot.shard_count})"
                     f" and can see {cache_summary}."
                 )
-        elif self.bot.shard_count:
+        elif False:
             summary.append(
                 f"This bot is manually sharded (Shard {self.bot.shard_id} of {self.bot.shard_count})"
                 f" and can see {cache_summary}."
@@ -133,19 +136,24 @@ class RootCommand(Feature):
         else:
             message_cache = "Message cache is disabled"
 
-        remarks = {
-            True: 'enabled',
-            False: 'disabled',
-            None: 'unknown'
-        }
+        if discord.version_info >= (1, 5, 0):
+            remarks = {
+                True: 'enabled',
+                False: 'disabled',
+                None: 'unknown'
+            }
 
-        *group, last = (
-            f"{intent.replace('_', ' ')} intent is {remarks.get(getattr(self.bot.intents, intent, None))}"
-            for intent in
-            ('presences', 'members', 'message_content')
-        )
+            *group, last = (
+                f"{intent.replace('_', ' ')} intent is {remarks.get(True)}"
+                for intent in
+                ('presences', 'members', 'message_content')
+            )
 
-        summary.append(f"{message_cache}, {', '.join(group)}, and {last}.")
+            summary.append(f"{message_cache}, {', '.join(group)}, and {last}.")
+        else:
+            guild_subscriptions = f"guild subscriptions are {'enabled' if self.bot._connection.guild_subscriptions else 'disabled'}"  # type: ignore
+
+            summary.append(f"{message_cache} and {guild_subscriptions}.")
 
         # pylint: enable=protected-access
 
@@ -241,7 +249,7 @@ class RootCommand(Feature):
 
         if task.ctx.command:
             await ctx.send(f"Cancelled task {task.index}: `{task.ctx.command.qualified_name}`,"
-                           f" invoked {discord.utils.format_dt(task.ctx.message.created_at, 'R')}")
+                           f" invoked at {task.ctx.message.created_at.strftime('%Y-%m-%d %H:%M:%S')} UTC")
         else:
             await ctx.send(f"Cancelled task {task.index}: unknown,"
-                           f" invoked {discord.utils.format_dt(task.ctx.message.created_at, 'R')}")
+                           f" invoked at {task.ctx.message.created_at.strftime('%Y-%m-%d %H:%M:%S')} UTC")

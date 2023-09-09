@@ -205,4 +205,4 @@ class Flags(metaclass=FlagMeta):  # pylint: disable=too-few-public-methods
         if cls.USE_ANSI_ALWAYS:
             return True
 
-        return not ctx.author.is_on_mobile() if isinstance(ctx.author, discord.Member) and ctx.bot.intents.presences else True
+        return not ctx.author.is_on_mobile() if isinstance(ctx.author, discord.Member) else True

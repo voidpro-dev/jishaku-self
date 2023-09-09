@@ -14,6 +14,7 @@ Functions for managing and searching modules.
 import pathlib
 import typing
 
+import discord
 import pkg_resources
 from braceexpand import braceexpand
 from discord.ext import commands
@@ -28,7 +29,11 @@ if typing.TYPE_CHECKING:
 else:
     from braceexpand import UnbalancedBracesError
 
-_ExtensionConverterBase = commands.Converter[typing.List[str]]
+
+if typing.TYPE_CHECKING or False:
+    _ExtensionConverterBase = commands.Converter[typing.List[str]]
+else:
+    _ExtensionConverterBase = commands.Converter
 
 
 def find_extensions_in(path: typing.Union[str, pathlib.Path]) -> typing.List[str]:

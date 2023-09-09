@@ -13,6 +13,7 @@ Functions and classes for handling exceptions.
 
 import asyncio
 import subprocess
+import sys
 import traceback
 import typing
 from types import TracebackType
@@ -43,8 +44,16 @@ async def send_traceback(
     traceback_content = "".join(traceback.format_exception(etype, value, trace, verbosity)).replace("``", "`\u200b`")
 
     paginator = commands.Paginator(prefix='```py')
+    start = False
     for line in traceback_content.split('\n'):
-        paginator.add_line(line)
+        if "Traceback (most recent call last):" in line and not start:
+            paginator.add_line(line)
+            start = True
+        elif 'in _repl_coroutine' in line:
+            paginator.add_line(line.replace("_repl_coroutine", "jishaku"))
+            start = False
+        elif not start:
+            paginator.add_line(line)
 
     message = None
 
@@ -58,7 +67,12 @@ async def send_traceback(
 
 
 T = typing.TypeVar('T')
-P = typing.ParamSpec('P')
+
+if sys.version_info < (3, 10):
+    from typing_extensions import ParamSpec
+    P = ParamSpec('P')
+else:
+    P = typing.ParamSpec('P')  # pylint: disable=no-member
 
 
 async def do_after_sleep(delay: float, coro: typing.Callable[P, typing.Awaitable[T]], *args: P.args, **kwargs: P.kwargs) -> T:
