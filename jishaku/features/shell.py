@@ -1,3 +1,7 @@
+try:
+    import discord_self as discord
+except:
+    pass
 # -*- coding: utf-8 -*-
 
 """

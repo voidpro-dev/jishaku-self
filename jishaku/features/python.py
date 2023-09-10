@@ -10,6 +10,10 @@ The jishaku Python evaluation/execution commands.
 :license: MIT, see LICENSE for more details.
 
 """
+try:
+    import discord_self as discord
+except:
+    pass
 
 import asyncio
 import collections

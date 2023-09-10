@@ -10,6 +10,10 @@ Paginator-related tools and interfaces for Jishaku.
 :license: MIT, see LICENSE for more details.
 
 """
+try:
+    import discord_self as discord
+except:
+    pass
 
 import asyncio
 import typing

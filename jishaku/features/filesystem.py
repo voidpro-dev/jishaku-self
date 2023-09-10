@@ -10,6 +10,10 @@ The jishaku filesystem-related commands.
 :license: MIT, see LICENSE for more details.
 
 """
+try:
+    import discord_self as discord
+except:
+    pass
 
 import io
 import os

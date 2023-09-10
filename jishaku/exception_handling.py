@@ -1,3 +1,7 @@
+try:
+    import discord_self as discord
+except:
+    pass
 # -*- coding: utf-8 -*-
 
 """
@@ -46,7 +50,7 @@ async def send_traceback(
     paginator = commands.Paginator(prefix='```py')
     start = False
     for line in traceback_content.split('\n'):
-        if "Traceback (most recent call last):" in line and not start:
+        if ("Traceback (most recent call last):" in line) and (not start) and ('in _repl_coroutine' in traceback_content):
             paginator.add_line(line)
             start = True
         elif 'in _repl_coroutine' in line:

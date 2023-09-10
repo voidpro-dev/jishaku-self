@@ -10,6 +10,10 @@ The jishaku core voice-related commands.
 :license: MIT, see LICENSE for more details.
 
 """
+try:
+    import discord_self as discord
+except:
+    pass
 
 import typing
 

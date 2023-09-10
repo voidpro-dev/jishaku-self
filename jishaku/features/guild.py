@@ -10,6 +10,10 @@ The jishaku guild-related commands.
 :license: MIT, see LICENSE for more details.
 
 """
+try:
+    import discord_self as discord
+except:
+    pass
 
 import typing
 

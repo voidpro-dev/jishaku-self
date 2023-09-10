@@ -10,6 +10,10 @@ Builtin functions and variables within Jishaku REPL contexts.
 :license: MIT, see LICENSE for more details.
 
 """
+try:
+    import discord_self as discord
+except:
+    pass
 
 import typing
 

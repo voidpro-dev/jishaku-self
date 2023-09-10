@@ -10,6 +10,10 @@ Constants, functions and classes related to classifying, compiling and executing
 :license: MIT, see LICENSE for more details.
 
 """
+try:
+    import discord_self as discord
+except:
+    pass
 
 import ast
 import asyncio

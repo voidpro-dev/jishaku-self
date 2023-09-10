@@ -10,6 +10,10 @@ The Jishaku cog base, which contains most of the actual functionality of Jishaku
 :license: MIT, see LICENSE for more details.
 
 """
+try:
+    import discord_self as discord
+except:
+    pass
 
 import dataclasses
 import inspect

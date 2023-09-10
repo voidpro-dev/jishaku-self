@@ -10,6 +10,11 @@ Functions for modifying or interfacing with discord.py models.
 :license: MIT, see LICENSE for more details.
 
 """
+try:
+    import discord_self as discord
+except:
+    pass
+
 
 import copy
 import typing

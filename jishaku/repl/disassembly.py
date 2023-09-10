@@ -10,6 +10,10 @@ Functions pertaining to the disassembly of Python code
 :license: MIT, see LICENSE for more details.
 
 """
+try:
+    import discord_self as discord
+except:
+    pass
 
 import ast
 import dis
