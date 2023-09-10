@@ -11,7 +11,7 @@ Constants, functions and classes related to classifying, compiling and executing
 
 """
 try:
-    import discord_self as discord
+    import selfcord as discord
 except:
     pass
 

@@ -11,7 +11,7 @@ Functions for modifying or interfacing with discord.py models.
 
 """
 try:
-    import discord_self as discord
+    import selfcord as discord
 except:
     pass
 

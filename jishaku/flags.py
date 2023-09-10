@@ -11,7 +11,7 @@ The Jishaku cog base, which contains most of the actual functionality of Jishaku
 
 """
 try:
-    import discord_self as discord
+    import selfcord as discord
 except:
     pass
 
@@ -20,7 +20,7 @@ import inspect
 import os
 import typing
 
-import discord_self
+import selfcord
 
 from jishaku.types import ContextA
 

@@ -11,7 +11,7 @@ Paginator-related tools and interfaces for Jishaku.
 
 """
 try:
-    import discord_self as discord
+    import selfcord as discord
 except:
     pass
 

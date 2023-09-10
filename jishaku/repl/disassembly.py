@@ -11,7 +11,7 @@ Functions pertaining to the disassembly of Python code
 
 """
 try:
-    import discord_self as discord
+    import selfcord as discord
 except:
     pass
 

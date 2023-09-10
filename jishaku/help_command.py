@@ -1,5 +1,5 @@
 try:
-    import discord_self as discord
+    import selfcord as discord
 except:
     pass
 # -*- coding: utf-8 -*-

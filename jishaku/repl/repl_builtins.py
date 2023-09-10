@@ -11,7 +11,7 @@ Builtin functions and variables within Jishaku REPL contexts.
 
 """
 try:
-    import discord_self as discord
+    import selfcord as discord
 except:
     pass
 

@@ -11,7 +11,7 @@ The jishaku filesystem-related commands.
 
 """
 try:
-    import discord_self as discord
+    import selfcord as discord
 except:
     pass
 
