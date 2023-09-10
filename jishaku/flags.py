@@ -20,7 +20,7 @@ import inspect
 import os
 import typing
 
-import discord
+import discord_self
 
 from jishaku.types import ContextA
 
