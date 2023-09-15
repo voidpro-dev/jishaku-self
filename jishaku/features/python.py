@@ -12,17 +12,16 @@ The jishaku Python evaluation/execution commands.
 """
 try:
     import selfcord as discord
+    from selfcord.ext import commands
 except:
-    pass
-
+    import discord
+    from discord.ext import commands
 import asyncio
 import collections
 import inspect
 import io
 import time
 import typing
-
-import discord
 
 from jishaku.codeblocks import Codeblock, codeblock_converter
 from jishaku.exception_handling import ReplResponseReactor

@@ -12,15 +12,16 @@ Paginator-related tools and interfaces for Jishaku.
 """
 try:
     import selfcord as discord
+    from selfcord import ui
+    from selfcord.ext import commands
 except:
-    pass
+    import discord
+    from discord import ui
+    from discord.ext import commands
 
 import asyncio
 import typing
 
-import discord
-from discord import ui
-from discord.ext import commands
 
 from jishaku.shim.paginator_base import EMOJI_DEFAULT
 

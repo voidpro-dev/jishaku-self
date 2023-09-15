@@ -12,12 +12,12 @@ The jishaku guild-related commands.
 """
 try:
     import selfcord as discord
+    from selfcord.ext import commands
 except:
-    pass
+    import discord
+    from discord.ext import commands
 
 import typing
-
-import discord
 
 from jishaku.features.baseclass import Feature
 from jishaku.types import ContextA

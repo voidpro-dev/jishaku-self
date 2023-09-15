@@ -1,7 +1,9 @@
 try:
     import selfcord as discord
+    from selfcord.ext import commands
 except:
-    pass
+    import discord
+    from discord.ext import commands
 # -*- coding: utf-8 -*-
 
 """
@@ -17,7 +19,6 @@ HelpCommand subclasses with jishaku features
 
 import typing
 
-from discord.ext import commands
 
 from jishaku.paginators import PaginatorEmbedInterface, PaginatorInterface
 

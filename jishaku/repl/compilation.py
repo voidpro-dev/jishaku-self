@@ -12,8 +12,10 @@ Constants, functions and classes related to classifying, compiling and executing
 """
 try:
     import selfcord as discord
+    from selfcord.ext import commands
 except:
-    pass
+    import discord
+    from discord.ext import commands
 
 import ast
 import asyncio
@@ -33,8 +35,12 @@ async def _repl_coroutine({{0}}):
     from importlib import import_module as {import_expression.constants.IMPORTER}
 
     import aiohttp
-    import discord
-    from discord.ext import commands
+    try:
+        import selfcord as discord
+        from selfcord.ext import commands
+    except:
+        import discord
+        from discord.ext import commands
 
     try:
         import jishaku

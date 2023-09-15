@@ -12,14 +12,14 @@ The jishaku core voice-related commands.
 """
 try:
     import selfcord as discord
+    import selfcord.opus as opus
+    import selfcord.voice_client as voice_client
 except:
-    pass
+    import discord
+    import discord.opus as opus
+    import discord.voice_client as voice_client
 
 import typing
-
-import discord
-import discord.opus
-import discord.voice_client
 
 from jishaku.features.baseclass import Feature
 from jishaku.types import ContextA
@@ -36,12 +36,13 @@ class VoiceFeature(Feature):
         Check for whether VC is available in this bot.
         """
 
-        if not discord.voice_client.has_nacl:
+        if not voice_client.has_nacl:
             return await ctx.send("Voice cannot be used because PyNaCl is not loaded.")
 
-        if not discord.opus.is_loaded():
-            if hasattr(discord.opus, '_load_default'):
-                if not discord.opus._load_default():  # type: ignore  # pylint: disable=protected-access,no-member
+        if not opus.is_loaded():
+            if hasattr(opus, '_load_default'):
+                
+                if not opus._load_default():  # type: ignore  # pylint: disable=protected-access,no-member
                     return await ctx.send(
                         "Voice cannot be used because libopus is not loaded and attempting to load the default failed."
                     )
@@ -56,7 +57,7 @@ class VoiceFeature(Feature):
 
         if not ctx.guild or not ctx.guild.voice_client or (
             not ctx.guild.voice_client.is_connected()
-            if isinstance(ctx.guild.voice_client, discord.VoiceClient)
+            if isinstance(ctx.guild.voice_client, VoiceClient)
             else False
         ):
             return await ctx.send("Not connected to a voice channel in this guild.")
@@ -75,7 +76,7 @@ class VoiceFeature(Feature):
 
         guild: discord.Guild = ctx.guild  # type: ignore
 
-        if (not guild.voice_client.is_playing() if isinstance(guild.voice_client, discord.VoiceClient) else False):
+        if (not guild.voice_client.is_playing() if isinstance(guild.voice_client, VoiceClient) else False):
             return await ctx.send("The voice client in this guild is not playing anything.")
 
     @Feature.Command(parent="jsk", name="voice", aliases=["vc"],

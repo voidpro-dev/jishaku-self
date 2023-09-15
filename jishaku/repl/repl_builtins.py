@@ -12,13 +12,14 @@ Builtin functions and variables within Jishaku REPL contexts.
 """
 try:
     import selfcord as discord
+    from selfcord.ext import commands
 except:
-    pass
+    import discord
+    from discord.ext import commands
 
 import typing
 
 import aiohttp
-import discord
 
 from jishaku.types import ContextA
 

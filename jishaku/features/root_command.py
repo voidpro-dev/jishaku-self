@@ -1,7 +1,9 @@
 try:
     import selfcord as discord
+    from selfcord.ext import commands
 except:
-    pass
+    import discord
+    from discord.ext import commands
 # -*- coding: utf-8 -*-
 
 """
@@ -17,9 +19,6 @@ The jishaku root command.
 
 import sys
 import typing
-
-import discord
-from discord.ext import commands
 
 from jishaku.features.baseclass import Feature
 from jishaku.flags import Flags

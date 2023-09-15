@@ -13,14 +13,13 @@ The Jishaku cog base, which contains most of the actual functionality of Jishaku
 try:
     import selfcord as discord
 except:
-    pass
+    import discord
 
 import dataclasses
 import inspect
 import os
 import typing
 
-import selfcord
 
 from jishaku.types import ContextA
 

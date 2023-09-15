@@ -1,7 +1,9 @@
 try:
     import selfcord as discord
+    from selfcord.ext import commands
 except:
-    pass
+    import discord
+    from discord.ext import commands
 # -*- coding: utf-8 -*-
 
 """
@@ -21,9 +23,6 @@ import time
 import traceback
 import typing
 from urllib.parse import urlencode
-
-import discord
-from discord.ext import commands
 
 from jishaku.features.baseclass import Feature
 from jishaku.flags import Flags

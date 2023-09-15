@@ -1,7 +1,9 @@
 try:
     import selfcord as discord
+    from selfcord.ext import commands
 except:
-    pass
+    import discord
+    from discord.ext import commands
 # -*- coding: utf-8 -*-
 
 """
@@ -18,10 +20,8 @@ Functions for managing and searching modules.
 import pathlib
 import typing
 
-import discord
 import pkg_resources
 from braceexpand import braceexpand
-from discord.ext import commands
 
 from jishaku.types import BotT, ContextA
 

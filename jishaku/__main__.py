@@ -1,7 +1,9 @@
 try:
     import selfcord as discord
+    from selfcord.ext import commands
 except:
-    pass
+    import discord
+    from discord.ext import commands
 # -*- coding: utf-8 -*-
 
 """
@@ -27,8 +29,6 @@ import typing
 import uuid
 
 import click
-import discord
-from discord.ext import commands
 
 LOG_FORMAT: logging.Formatter = logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(message)s')
 LOG_STREAM: logging.Handler = logging.StreamHandler(stream=sys.stdout)

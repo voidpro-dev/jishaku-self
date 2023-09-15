@@ -12,12 +12,13 @@ Paginator-related tools and interfaces for Jishaku.
 """
 try:
     import selfcord as discord
+    from selfcord.ext import commands
 except:
-    pass
+    import discord
+    from discord.ext import commands
 
 import typing
 
-import discord
 
 # emoji settings, this sets what emoji are used for PaginatorInterface
 

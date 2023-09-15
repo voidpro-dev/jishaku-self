@@ -12,14 +12,14 @@ Functions for modifying or interfacing with discord.py models.
 """
 try:
     import selfcord as discord
+    from selfcord.ext import commands
 except:
-    pass
-
+    import discord
+    from discord.ext import commands
 
 import copy
 import typing
 
-import discord
 
 from jishaku.types import ContextT
 

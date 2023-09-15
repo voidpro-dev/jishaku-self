@@ -12,8 +12,10 @@ Functions pertaining to the disassembly of Python code
 """
 try:
     import selfcord as discord
+    from selfcord.ext import commands
 except:
-    pass
+    import discord
+    from discord.ext import commands
 
 import ast
 import dis
@@ -26,8 +28,12 @@ from jishaku.repl.scope import Scope
 CORO_CODE = f"""
 import asyncio
 
-import discord
-from discord.ext import commands
+try:
+    import selfcord as discord
+    from selfcord.ext import commands
+except:
+    import discord
+    from discord.ext import commands
 from importlib import import_module as {import_expression.constants.IMPORTER}
 
 import jishaku

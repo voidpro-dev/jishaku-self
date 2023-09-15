@@ -1,7 +1,9 @@
 try:
     import selfcord as discord
+    from selfcord.ext import commands
 except:
-    pass
+    import discord
+    from discord.ext import commands
 # -*- coding: utf-8 -*-
 
 """
@@ -17,8 +19,6 @@ The Jishaku debugging and diagnostics cog implementation.
 
 import inspect
 import typing
-
-from discord.ext import commands
 
 from jishaku.features.baseclass import Feature
 from jishaku.features.filesystem import FilesystemFeature

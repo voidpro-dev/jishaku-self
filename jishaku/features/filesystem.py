@@ -12,8 +12,10 @@ The jishaku filesystem-related commands.
 """
 try:
     import selfcord as discord
+    from selfcord.ext import commands
 except:
-    pass
+    import discord
+    from discord.ext import commands
 
 import io
 import os
@@ -21,7 +23,6 @@ import pathlib
 import re
 
 import aiohttp
-import discord
 
 from jishaku.exception_handling import ReplResponseReactor
 from jishaku.features.baseclass import Feature

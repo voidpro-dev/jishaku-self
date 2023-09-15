@@ -1,7 +1,9 @@
 try:
     import selfcord as discord
+    from selfcord.ext import commands
 except:
-    pass
+    import discord
+    from discord.ext import commands
 # -*- coding: utf-8 -*-
 
 """
@@ -16,9 +18,6 @@ Declarations for type checking
 """
 
 import typing
-
-import discord
-from discord.ext import commands
 
 BotT = typing.Union[commands.Bot, None]
 
