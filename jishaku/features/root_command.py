@@ -37,6 +37,7 @@ try:
 except ImportError:
     from importlib_metadata import distribution, packages_distributions  # type: ignore
 
+version = "2.5.1"
 
 class RootCommand(Feature):
     """
@@ -58,21 +59,22 @@ class RootCommand(Feature):
         """
 
         # Try to locate what vends the `discord` package
-        distributions: typing.List[str] = [
-            dist for dist in packages_distributions()['discord']  # type: ignore
-            if any(
-                file.parts == ('discord', '__init__.py')  # type: ignore
-                for file in distribution(dist).files  # type: ignore
-            )
-        ]
+        #distributions: typing.List[str] = [
+        #    dist for dist in packages_distributions()['discord']  # type: ignore
+        #    if any(
+        #        file.parts == ('discord', '__init__.py')  # type: ignore
+        #        for file in distribution(dist).files  # type: ignore
+        #    )
+        #]
 
-        if distributions:
-            dist_version = f'{distributions[0]} `{package_version(distributions[0])}`'
-        else:
-            dist_version = f'unknown `{discord.__version__}`'
+        #if distributions:
+        #    dist_version = f'{distributions[0]} `{package_version(distributions[0])}`'
+        #else:
+        #    dist_version = f'unknown `{discord.__version__}`'
+        dist_version = f'{discord.__title__} `{discord.__version__}`'
 
         summary = [
-            f"Jishaku v{package_version('jishaku')}, {dist_version}, "
+            f"Jishaku v{version}, {dist_version}, "
             f"`Python {sys.version}` on `{sys.platform}`".replace("\n", ""),
             f"Module was loaded <t:{self.load_time.timestamp():.0f}:R>, "
             f"cog was loaded <t:{self.start_time.timestamp():.0f}:R>.",
