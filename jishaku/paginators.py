@@ -190,7 +190,7 @@ def use_file_check(
         (
             # Ensure the user isn't on mobile
             not ctx.author.is_on_mobile()
-            if ctx.guild and ctx.bot.intents.presences and isinstance(ctx.author, discord.Member)
+            if ctx.guild and isinstance(ctx.author, discord.Member)
             else True
         )
     ])
